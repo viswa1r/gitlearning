@@ -1,0 +1,46 @@
+<div class="row">
+    <div class="col-sm-4">
+        <input type="text"  class="form-control" [(ngModel)]="search">
+    </div>
+
+    <div class="col-sm-4">
+        <button class="btn btn-primary" (click)="SearchProducts()">Search</button>
+    </div>
+</div>
+<div class="row">
+<div class="col-md-6">
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Price</th>
+                <th>Date of Delivery</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of products">
+            <td>{{item.modelNumber |uppercase}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.salePrice|currency:'usd':true}}</td>
+            <td>{{item.deliveryDate|date:'MM/dd/yyyy'}}</td>
+          <!--  <td><button class="btn btn-primary" (click)="addItemToCart(item)">Select</button></td>-->
+          <td>
+             <a [routerLink]="['product-detail',item.name]">Products</a>
+           </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+<!--<div class="col-md-6" *ngIf="selectedProduct">
+    <h1>Details</h1>
+    <router-outlet></router-outlet>
+    <app-product-detail [productDetails]="selectedProduct"
+(chooseDetails)="productChoosed($event)"
+    ></app-product-detail>
+  </div>-->
+  <div class="col-md-6">
+    <router-outlet></router-outlet>
+  </div>
+</div>
